@@ -21,4 +21,4 @@ ssh -t -A k.cherkasovstolpovsk@34.77.93.185 'ssh k.cherkasovstolpovsk@10.132.0.4
 
 bastion_IP = 35.198.167.169
 
-someinternalhost_IP = 10.156.0.3
+someinternalhost_IP = 10.132.0.4
