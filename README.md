@@ -19,6 +19,6 @@ ssh -t -A k.cherkasovstolpovsk@34.77.93.185 'ssh k.cherkasovstolpovsk@10.132.0.4
 
 ### Конфигурация для подключения
 
-bastion_IP = 35.198.167.169
+bastion_IP = 34.77.93.185
 
 someinternalhost_IP = 10.132.0.4
