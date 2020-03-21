@@ -1,0 +1,13 @@
+[Unit]
+Description=OtUs Reddit monolith app
+After=mongod.service
+Requires=mongod.service
+
+[Service]
+User=appuser
+Group=appuser
+WorkingDirectory=/home/appuser/reddit/
+ExecStart=/usr/local/bin/puma --dir /home/appuser/reddit/
+
+[Install]
+WantedBy=multi-user.target
