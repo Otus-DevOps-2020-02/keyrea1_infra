@@ -37,3 +37,7 @@ testapp_port = 9292
 
 ### Команда создания правила-исключения для брандмауэра GCP
 > gcloud compute firewall-rules create default-puma-server --network "default" --priority 1000 --direction in --action allow --target-tags puma-server --source-ranges 0.0.0.0/0 --rules TCP:9292 --no-disabled --no-enable-logging
+
+# дз 5
+### Команда создания виртуалки - задание со звездочкой:
+ > gcloud compute instances create reddit-app-full --boot-disk-size=10GB --image-family reddit-full --machine-type=g1-small --tags puma-server --restart-on-failure
