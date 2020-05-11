@@ -41,3 +41,8 @@ testapp_port = 9292
 # дз 5
 ### Команда создания виртуалки - задание со звездочкой:
  > gcloud compute instances create reddit-app-full --boot-disk-size=10GB --image-family reddit-full --machine-type=g1-small --tags puma-server --restart-on-failure
+
+# дз 8
+### Был добавлен ssh ключ appuser_web, но он был удален после команды terraform apply
+
+### Был создан балансировщик нагрузки (файл lb.tf). Настроены выводы 3 ip адресов в output.tf Реализована работа со счетчиком с дефолтным значением 1 с помощью переменной count. После этого для корректной работы приходится изменять файлы lb.tf, outputs.tf и main.tf.
