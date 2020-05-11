@@ -23,7 +23,7 @@ resource "google_compute_instance" "app" {
     private_key = file(var.private_key_path)
   }
   provisioner "file" {
-    content     = templatefile("${path.module}/files/puma.service.tmpl", { db_ip = var.db_ip})
+    content     = templatefile("${path.module}/files/puma.service.tmpl", { db_ip = var.DATABASE_URL})
     destination = "/tmp/puma.service"
   }
   provisioner "remote-exec" {

@@ -10,7 +10,7 @@ module "app" {
   zone              = var.zone
   app_disk_image    = var.app_disk_image
   private_key_path  = var.private_key_path
-  db_ip             = module.db.DATABASE_URL
+  DATABASE_URL      = module.db.DATABASE_URL
 }
 
 module "db" {
