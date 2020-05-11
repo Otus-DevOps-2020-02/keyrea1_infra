@@ -12,6 +12,8 @@ bundle install
 echo 4
 mv /home/appuser/puma.service /etc/systemd/system/puma.service
 echo 5
-systemctl enable puma.service
+apt install -y ruby-full ruby-bundler build-essential
 echo 6
+systemctl enable puma.service
+echo 7
 systemctl start puma.service
