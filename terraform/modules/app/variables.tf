@@ -18,3 +18,6 @@ variable private_key_path {
 variable DATABASE_URL {
   description = "Database internal IP"
 }
+
+variable provision_enabled {
+}
