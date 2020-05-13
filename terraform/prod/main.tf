@@ -11,6 +11,8 @@ module "app" {
   app_disk_image    = var.app_disk_image
   private_key_path  = var.private_key_path
   DATABASE_URL      = module.db.DATABASE_URL
+  provision_enabled = false
+
 }
 
 module "db" {
@@ -19,6 +21,7 @@ module "db" {
   zone              = var.zone
   db_disk_image     = var.db_disk_image
   private_key_path  = var.private_key_path
+  provision_enabled = false
 }
 
 module "vpc" {
