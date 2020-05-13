@@ -1,4 +1,7 @@
 {
     "project_id": "abcde-12345",
-    "source_image_family": "ubuntu-1604-lts"
+    "source_image_family": "ubuntu-1604-lts",
+    "machine_type": "f1-micro",
+    "ssh_username": "appuser",
+    "zone": "europe-west3-b"
 }
