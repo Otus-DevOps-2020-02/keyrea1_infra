@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "keyrea1-terraform"
+    bucket  = "storage-bucket-testing"
     prefix  = "stage"
   }
 }

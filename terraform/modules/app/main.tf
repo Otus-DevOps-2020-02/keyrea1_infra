@@ -15,24 +15,40 @@ resource "google_compute_instance" "app" {
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
-  connection {
-    type        = "ssh"
-    host        = self.network_interface[0].access_config[0].nat_ip
-    user        = "masterplan"
-    agent       = false
-    private_key = file(var.private_key_path)
-  }
-  provisioner "file" {
-    content     = templatefile("${path.module}/files/puma.service.tmpl", { db_ip = var.DATABASE_URL})
-    destination = "/tmp/puma.service"
-  }
-  provisioner "remote-exec" {
-    script = "${path.module}/files/deploy.sh"
-  }
 }
 
 resource "google_compute_address" "app_ip" {
   name = "reddit-app-ip"
+}
+
+resource "null_resource" "app" {
+  # отключить выполнение provision если false
+  count = var.provision_enabled ? 1 : 0
+  connection {
+    type        = "ssh"
+    host        = google_compute_instance.app.network_interface.0.access_config.0.nat_ip
+    user        = "appuser"
+    agent       = false
+    private_key = file(var.private_key_path)
+  }
+
+  # для передачи переменной лучше использовать шаблоны:
+  # https://alexharv074.github.io/2019/11/23/adventures-in-the-terraform-dsl-part-x-templates.html#template-providers--21
+  # данный пример без использования шаблонов
+  provisioner "remote-exec" {
+    inline = [
+      "echo DATABASE_URL=${var.DATABASE_URL} | sudo tee /tmp/int-db-ip.env",
+    ]
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/files/reddit.service"
+    destination = "/tmp/reddit.service"
+  }
+
+  provisioner "remote-exec" {
+    script = "${path.module}/files/deploy.sh"
+  }
 }
 
 resource "google_compute_firewall" "firewall_puma" {
